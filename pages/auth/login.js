@@ -14,9 +14,14 @@ export default function LoginPage() {
     Router.push("/");
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Fazer a lógica de autenticação aqui
+  };
+
 
   return (
-    <div className='bg-red-400'>
       <div className="relative py-16 bg-gradient-to-br from-sky-50 to-gray-200">
         <div className="relative container m-auto px-6 text-gray-500 md:px-12 xl:px-40">
           <div className="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">
@@ -42,6 +47,5 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-    </div>
   )
 }
