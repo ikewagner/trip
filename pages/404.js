@@ -1,10 +1,8 @@
 import React from "react";
-import Header from "./components/Header";
 
 const Page404 = () => {
-
     return (
-        <section className="flex items-center h-full p-16 dark:bg-gray-900 dark:text-gray-100">
+        <section className="flex items-center h-full p-16">
             <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
                 <div className="max-w-md text-center">
                     <h2 className="mb-8 font-extrabold text-9xl dark:text-gray-600">

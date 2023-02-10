@@ -7,6 +7,7 @@ const Home: NextPage = () => {
   return (
     <>   
       <HomePage/>
+
     </>
   )
 }
