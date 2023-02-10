@@ -30,10 +30,12 @@ const TodoTable = ({ todos }) => {
                                 <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{todo.email}</td>
                                 <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{todo.nome}</td>
                                 <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {todo.isBlocked ? 'Sim' : 'Não'}
+                                    <span className={todo.isBlocked ? 'bg-green-500 text-white p-1' : 'bg-red-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full'}>
+                                        {todo.isBlocked ? 'Sim' : 'Não'}
+                                    </span>
                                 </td>
                                 <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <span className={todo.isAdmin ? 'bg-red-500 text-white p-1' : 'bg-gray-500 text-white p-1 '}>
+                                    <span className={todo.isAdmin ? 'bg-red-500 text-white p-1' : 'bg-gray-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full'}>
                                         {todo.isAdmin ? 'Admin' : 'Cliente'}
                                     </span>
                                 </td>
