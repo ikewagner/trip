@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const TodoTable = ({ todos }) => {
+const userTable = ({ todos }) => {
     const [showModal, setShowModal] = useState(false);
     const [selectedTodo, setSelectedTodo] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
@@ -67,4 +67,4 @@ const TodoTable = ({ todos }) => {
     );
 };
 
-export default TodoTable;
+export default userTable;
