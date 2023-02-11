@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import UserTable from "./userTable";
 
 const userList = () => {
-    const [todos, setTodos] = useState([]);
+    const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -17,7 +17,7 @@ const userList = () => {
             querySnapchot.docs.forEach((doc) => {
                 ar.push({ id: doc.id, ...doc.data() });
             });
-            setTodos(ar);
+            setUsers(ar);
             setLoading(false);
         }, (error) => {
             setError(error);
@@ -44,7 +44,7 @@ const userList = () => {
     return (
         <>
             <Header />
-            <UserTable todos={todos} />
+            <UserTable users={users} />
         </>
     );
 };

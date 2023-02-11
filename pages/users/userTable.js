@@ -1,23 +1,18 @@
 import React, { useState } from 'react';
 
-const userTable = ({ todos }) => {
+const userTable = ({ users }) => {
     const [showModal, setShowModal] = useState(false);
     const [selectedTodo, setSelectedTodo] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
-
-    const handleEditClick = (todo) => {
-        setSelectedTodo(todo);
-        setShowModal(true);
-    };
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
     };
 
-    const filteredTodos = todos.filter((todo) => {
-        return todo.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-               todo.nome.toLowerCase().includes(searchTerm.toLowerCase());
-    });
+    const filteredTodos = users ? users.filter((user) => {
+        return user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+               user.nome.toLowerCase().includes(searchTerm.toLowerCase());
+    }) : [];
 
     return (
         <div className="relative overflow-x-auto">
@@ -42,22 +37,22 @@ const userTable = ({ todos }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredTodos.map((todo) => (
-                        <tr key={todo.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{todo.email}</td>
-                            <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{todo.nome}</td>
+                    {filteredTodos.map((user) => (
+                        <tr key={user.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.email}</td>
+                            <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.nome}</td>
                             <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <span className={todo.isBlocked ? 'bg-green-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full' : 'bg-red-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full'}>
-                                    {todo.isBlocked ? 'Sim' : 'Não'}
+                                <span className={user.isBlocked ? 'bg-green-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full' : 'bg-red-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full'}>
+                                    {user.isBlocked ? 'Sim' : 'Não'}
                                 </span>
                             </td>
                             <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <span className={todo.isAdmin ? 'bg-orange-400 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full' : 'bg-gray-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full'}>
-                                    {todo.isAdmin ? 'Admin' : 'Cliente'}
+                                <span className={user.isAdmin ? 'bg-orange-400 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full' : 'bg-gray-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full'}>
+                                    {user.isAdmin ? 'Admin' : 'Cliente'}
                                 </span>
                             </td>
                             <td className="px-6 py-4">
-                                <button onClick={() => handleEditClick(todo)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</button>
+                                <button onClick={() => handleEditClick(user)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</button>
                             </td>
                         </tr>
                     ))}
