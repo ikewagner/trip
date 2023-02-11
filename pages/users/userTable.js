@@ -3,16 +3,34 @@ import React, { useState } from 'react';
 const TodoTable = ({ todos }) => {
     const [showModal, setShowModal] = useState(false);
     const [selectedTodo, setSelectedTodo] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const handleEditClick = (todo) => {
         setSelectedTodo(todo);
         setShowModal(true);
-        console.log("mdpsmpmp")
     };
+
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const filteredTodos = todos.filter((todo) => {
+        return todo.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+               todo.nome.toLowerCase().includes(searchTerm.toLowerCase());
+    });
 
     return (
         <div className="relative overflow-x-auto">
             <h2 className="mt-16 text-lg font-medium text-center">Usuários do Sistema</h2>
+            <div className="flex justify-center align-center mt-10">
+                <input
+                    className="border border-gray-400 px-10 py-2"
+                    type="text"
+                    placeholder="Pesquisar nome ou email"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                />
+            </div>
             <table className="mt-16 w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead>
                     <tr>
@@ -24,26 +42,25 @@ const TodoTable = ({ todos }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {todos &&
-                        todos.map((todo) => (
-                            <tr key={todo.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{todo.email}</td>
-                                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{todo.nome}</td>
-                                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <span className={todo.isBlocked ? 'bg-green-500 text-white p-1' : 'bg-red-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full'}>
-                                        {todo.isBlocked ? 'Sim' : 'Não'}
-                                    </span>
-                                </td>
-                                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <span className={todo.isAdmin ? 'bg-red-500 text-white p-1' : 'bg-gray-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full'}>
-                                        {todo.isAdmin ? 'Admin' : 'Cliente'}
-                                    </span>
-                                </td>
-                                <td className="px-6 py-4">
-                                    <button onClick={() => handleEditClick(todo)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</button>
-                                </td>
-                            </tr>
-                        ))}
+                    {filteredTodos.map((todo) => (
+                        <tr key={todo.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{todo.email}</td>
+                            <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{todo.nome}</td>
+                            <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <span className={todo.isBlocked ? 'bg-green-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full' : 'bg-red-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full'}>
+                                    {todo.isBlocked ? 'Sim' : 'Não'}
+                                </span>
+                            </td>
+                            <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <span className={todo.isAdmin ? 'bg-orange-400 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full' : 'bg-gray-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full'}>
+                                    {todo.isAdmin ? 'Admin' : 'Cliente'}
+                                </span>
+                            </td>
+                            <td className="px-6 py-4">
+                                <button onClick={() => handleEditClick(todo)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</button>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </div>
