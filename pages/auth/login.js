@@ -11,9 +11,6 @@ export default function LoginPage() {
 
   const loginGoogle = async () => {
     const result = await signInWithPopup(auth, GoogleAuth);
-
-    
-
     Router.push("/");
   };
 

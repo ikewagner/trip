@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 
 const userTable = ({ users }) => {
     const [showModal, setShowModal] = useState(false);
-    const [selectedTodo, setSelectedTodo] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
     };
 
-    const filteredTodos = users ? users.filter((user) => {
+    const filteredUsers = users ? users.filter((user) => {
         return user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
                user.nome.toLowerCase().includes(searchTerm.toLowerCase());
     }) : [];
@@ -19,9 +18,9 @@ const userTable = ({ users }) => {
             <h2 className="mt-16 text-lg font-medium text-center">Usuários do Sistema</h2>
             <div className="flex justify-center align-center mt-10">
                 <input
-                    className="border border-gray-400 px-10 py-2"
+                    className="bg-gray-200 p-2 w-96"
                     type="text"
-                    placeholder="Pesquisar nome ou email"
+                    placeholder="Pesquisar usuários"
                     value={searchTerm}
                     onChange={handleSearchChange}
                 />
@@ -37,7 +36,7 @@ const userTable = ({ users }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredTodos.map((user) => (
+                    {filteredUsers.map((user) => (
                         <tr key={user.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.email}</td>
                             <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.nome}</td>
