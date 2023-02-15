@@ -1,13 +1,10 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import HomePage from "./home";
+import EventList from "./home/eventList"
 
 const Home: NextPage = () => {
   return (
     <>   
-      <HomePage/>
-
+      <EventList/>
     </>
   )
 }

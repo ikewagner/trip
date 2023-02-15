@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 const userTable = ({ users }) => {
-    const [showModal, setShowModal] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearchChange = (event) => {
