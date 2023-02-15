@@ -1,7 +1,7 @@
 import { auth } from "./../../lib/Firebase";
 import React, { useState, useEffect } from "react";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaEdit, FaMoneyBillWave, FaUserCog, FaStopCircle, FaPlusCircle, FaTicketAlt } from "react-icons/fa";
 import { collection, query, onSnapshot, where, getDocs } from "firebase/firestore";
 import { db } from "../../lib/Firebase";
 
@@ -51,15 +51,31 @@ const Header = () => {
               {showDropdown && (
                 <div className="bg-gray-800 absolute right-0 mt-2 py-2 w-40 text-white rounded shadow-lg">
                   {!isAdmin && (
-                    <a href="/edit-account" className="block px-4 py-2 text-sm hover:bg-gray-700">Editar conta</a>
+                    <>
+                      <a href="/edit-account" className="block px-4 py-2 text-sm hover:bg-gray-700">
+                        <FaEdit className="inline-block mr-2" />Editar conta
+                      </a>
+                      <a href="/edit-account" className="block px-4 py-2 text-sm hover:bg-gray-700">
+                        <FaTicketAlt className="inline-block mr-2" />Tickets
+                      </a>
+                    </>
                   )}
                   {isAdmin && (
                     <>
-                      <a href="/users/userList" className="block px-4 py-2 text-sm hover:bg-gray-700">Verificar contas</a>
-                      <a href="/purchases" className="block px-4 py-2 text-sm hover:bg-gray-700">Verificar compras</a>
+                      <a href="/purchases" className="block px-4 py-2 text-sm hover:bg-gray-700">
+                        <FaMoneyBillWave className="inline-block mr-2" />Transações
+                      </a>
+                      <a href="/purchases" className="block px-4 py-2 text-sm hover:bg-gray-700">
+                        <FaUserCog className="inline-block mr-2" />Verificar Contas
+                      </a>
                     </>
                   )}
-                  <a onClick={handleLogout} className="block px-4 py-2 text-sm hover:bg-gray-700">Sair</a>
+                  <a href="/create-event" onClick={handleLogout} className="block px-4 py-2 text-sm hover:bg-gray-700">
+                    <FaPlusCircle className="inline-block mr-2" />Criar evento
+                  </a>
+                  <a href="/" onClick={handleLogout} className="block px-4 py-2 text-sm hover:bg-gray-700">
+                    <FaStopCircle className="inline-block mr-2" />Sair
+                  </a>
                 </div>
               )}
             </div>

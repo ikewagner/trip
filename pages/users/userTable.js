@@ -9,7 +9,7 @@ const userTable = ({ users }) => {
 
     const filteredUsers = users ? users.filter((user) => {
         return user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-               user.nome.toLowerCase().includes(searchTerm.toLowerCase());
+            user.nome.toLowerCase().includes(searchTerm.toLowerCase());
     }) : [];
 
     return (
@@ -24,40 +24,44 @@ const userTable = ({ users }) => {
                     onChange={handleSearchChange}
                 />
             </div>
-            <table className="mt-16 w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead>
-                    <tr>
-                        <th scope="col" className="px-6 py-3">Email</th>
-                        <th scope="col" className="px-6 py-3">Nome</th>
-                        <th scope="col" className="px-6 py-3">Bloqueado</th>
-                        <th scope="col" className="px-6 py-3">Permissão</th>
-                        <th scope="col" className="px-6 py-3">Ação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filteredUsers.map((user) => (
-                        <tr key={user.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.email}</td>
-                            <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.nome}</td>
-                            <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <span className={user.isBlocked ? 'bg-green-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full' : 'bg-red-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full'}>
-                                    {user.isBlocked ? 'Sim' : 'Não'}
-                                </span>
-                            </td>
-                            <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <span className={user.isAdmin ? 'bg-orange-400 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full' : 'bg-gray-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full'}>
-                                    {user.isAdmin ? 'Admin' : 'Cliente'}
-                                </span>
-                            </td>
-                            <td className="px-6 py-4">
-                                <button onClick={() => handleEditClick(user)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</button>
-                            </td>
+            <div className="block w-full overflow-x-auto">
+                <table className="mt-16 w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead>
+                        <tr>
+                            <th scope="col" className="px-6 py-3">Email</th>
+                            <th scope="col" className="px-6 py-3">Nome</th>
+                            <th scope="col" className="px-6 py-3">Bloqueado</th>
+                            <th scope="col" className="px-6 py-3">Permissão</th>
+                            <th scope="col" className="px-6 py-3">Ação</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {filteredUsers.map((user) => (
+                            <tr key={user.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.email}</td>
+                                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.nome}</td>
+                                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <span className={user.isBlocked ? 'bg-green-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full' : 'bg-red-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full'}>
+                                        {user.isBlocked ? 'Sim' : 'Não'}
+                                    </span>
+                                </td>
+                                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <span className={user.isAdmin ? 'bg-orange-400 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full' : 'bg-gray-500 text-white inline-flex items-center text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full'}>
+                                        {user.isAdmin ? 'Admin' : 'Cliente'}
+                                    </span>
+                                </td>
+                                <td className="px-6 py-4">
+                                    <button onClick={() => handleEditClick(user)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
+
         </div>
-    );
+    )
 };
 
 export default userTable;
