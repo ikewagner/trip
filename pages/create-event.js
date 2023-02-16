@@ -1,119 +1,86 @@
-import Head from 'next/head';
 import { useState } from 'react';
+import { collection, query, addDoc, doc } from "firebase/firestore";
+import { Header } from '../pages/components/Header';
+import { db } from '../lib/Firebase';
 
 export default function CreateEvent() {
-  const [eventName, setEventName] = useState('');
-  const [eventLocation, setEventLocation] = useState('');
-  const [eventDate, setEventDate] = useState('');
-  const [eventTime, setEventTime] = useState('');
 
-  const handleEventNameChange = (event) => {
-    setEventName(event.target.value);
-  };
+  const [nome, setNome] = useState("");
+  const [data, setData] = useState("");
+  const [time, setTime] = useState("");
+  const [local, setLocal] = useState("");
 
-  const handleEventLocationChange = (event) => {
-    setEventLocation(event.target.value);
-  };
 
-  const handleEventDateChange = (event) => {
-    setEventDate(event.target.value);
-  };
-
-  const handleEventTimeChange = (event) => {
-    setEventTime(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    // adiciona o evento ao Firestore usando query e addDoc
+    const q = query(collection(db, "events"));
+    const newEventRef = doc(q);
+    const newEventId = newEventRef.id;
 
-    // handle form submission here
+    await addDoc(q, { id: newEventId, nome,  local, data });
+    // limpa os campos do formulário
+    setNome("");
+    setLocal("");
+    setData("");
   };
 
   return (
-    <div className="container mx-auto">
-      <Head>
-        <title>Criação de Eventos</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <>
 
-      <main>
-        <h1 className="text-3xl font-bold mb-8">Criação de Eventos</h1>
-
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block font-bold mb-2" htmlFor="eventName">
-              Nome do Evento
-            </label>
-            <input
-              className="border border-gray-400 p-2 w-full"
-              type="text"
-              id="eventName"
-              name="eventName"
-              value={eventName}
-              onChange={handleEventNameChange}
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block font-bold mb-2" htmlFor="eventLocation">
-              Localização
-            </label>
-            <input
-              className="border border-gray-400 p-2 w-full"
-              type="text"
-              id="eventLocation"
-              name="eventLocation"
-              value={eventLocation}
-              onChange={handleEventLocationChange}
-              required
-            />
-            <button className="mt-2 bg-blue-500 text-white rounded py-2 px-4" onClick={() => {
-              if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                  setEventLocation(`${position.coords.latitude}, ${position.coords.longitude}`);
-                });
-              } else {
-                alert('Seu navegador não suporta geolocalização.');
-              }
-            }}>Usar minha localização</button>
-          </div>
-
-          <div className="mb-4">
-            <label className="block font-bold mb-2" htmlFor="eventDate">
-              Data
-            </label>
-            <input
-              className="border border-gray-400 p-2 w-full"
-              type="date"
-              id="eventDate"
-              name="eventDate"
-              value={eventDate}
-              onChange={handleEventDateChange}
-              required
-            />
-          </div>
-
-          <div className="mb-8">
-            <label className="block font-bold mb-2" htmlFor="eventTime">
-              Horário
-            </label>
-            <input
-              className="border border-gray-400 p-2 w-full"
-              type="time"
-              id="eventTime"
-              name="eventTime"
-              value={eventTime}
-              onChange={handleEventTimeChange}
-              required
-            />
-          </div>
-
-          <button className="bg-blue-500 text-white rounded py-2 px-4" type="submit">
-            Criar Evento
-          </button>
-        </form>
-      </main>
-    </div>
+    <form onSubmit={handleSubmit} className="p-4 space-y-4">
+      <div>
+        <label htmlFor="name" className="block font-medium">
+          Nome do evento:
+        </label>
+        <input
+          type="text"
+          id="name"
+          value={nome}
+          onChange={(event) => setNome(event.target.value)}
+          className="border border-gray-300 p-2 w-full rounded"
+        />
+      </div>
+      <div>
+        <label htmlFor="date" className="block font-medium">
+          Data:
+        </label>
+        <input
+          type="date"
+          id="data"
+          value={data}
+          onChange={(event) => setData(event.target.value)}
+          className="border border-gray-300 p-2 w-full rounded"
+        />
+      </div>
+      <div>
+        <label htmlFor="time" className="block font-medium">
+          Hora:
+        </label>
+        <input
+          type="time"
+          id="time"
+          value={time}
+          onChange={(event) => setTime(event.target.value)}
+          className="border border-gray-300 p-2 w-full rounded"
+        />
+      </div>
+      <div>
+        <label htmlFor="location" className="block font-medium">
+          Localização:
+        </label>
+        <input
+          type="text"
+          id="location"
+          value={local}
+          onChange={(event) => setLocal(event.target.value)}
+          className="border border-gray-300 p-2 w-full rounded"
+        />
+      </div>
+      <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
+        Criar evento
+      </button>
+    </form>
+    </>
   );
 }

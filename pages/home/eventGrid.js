@@ -37,7 +37,7 @@ const eventGrid = ({ events }) => {
                                 <header className="flex items-center justify-between leading-tight p-2 md:p-4">
                                     <h1 className="text-base">
                                         <a className=" font-medium text-blue-400">
-                                            10/02/2023
+                                            {event.data}
                                         </a>
                                     </h1>
                                 </header>

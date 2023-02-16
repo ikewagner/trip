@@ -24,64 +24,66 @@ const Register = () => {
   };
 
   return (
-    <div className=" min-h-screen p-10">
-      <div className="max-w-sm mx-auto bg-white rounded-lg shadow-lg p-10">
-        <img src="/logo.png" alt="logo" className="mx-auto mb-6" width={64} height={64} />
-        <h2 className="text-lg font-medium text-center mb-4">Registrar</h2>
-        <form onSubmit={e => onSubmit(e)}>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 font-medium mb-2"
-              htmlFor="email"
-            >
-              Email
-            </label>
-            <input
-              className="border border-gray-400 p-2 w-full"
-              type="email"
-              name="email"
-              value={email}
-              onChange={e => onChange(e)}
-            />
+    <div className="bg-gradient-to-br from-sky-50 to-gray-200 min-h-screen py-10">
+      <div className="relative container m-auto px-6 text-gray-500 md:px-12 xl:px-40">
+        <div className="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12 login-container">
+          <div className="rounded-xl bg-white shadow-xl">
+            <div className="p-6 sm:p-16">
+              <div className="space-y-4">
+                <h2 className="mb-8 text-2xl text-cyan-900 font-bold text-center">Entre hoje mesmo para a <b>TRIP.</b></h2>
+              </div>
+              <div className="mt-16 grid space-y-4">
+              <input className="group h-12 px-6 border-2 border-gray-300 rounded-full"
+                  type="text"
+                  id="nome"
+                  placeholder="Digite seu nome completo"
+                >
+                </input>
+                <input className="group h-12 px-6 border-2 border-gray-300 rounded-full"
+                  type="email"
+                  id="email"
+                  placeholder="E-mail"
+                >
+                </input>
+                <input className="group h-12 px-6 border-2 border-gray-300 rounded-full"
+                  type="password"
+                  placeholder="Digite sua senha"
+                  id="senha"
+                >
+                </input>
+                <input className="group h-12 px-6 border-2 border-gray-300 rounded-full"
+                  type="password"
+                  placeholder="Digite novamente sua senha"
+                  id="senha"
+                >
+                </input>
+                <div class="mb-6 text-center">
+                  <button
+                    class="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+                    type="button"
+                  >
+                    Registrar
+                  </button>
+                </div>
+                <hr class="mb-6 border-t" />
+                <div class="text-center">
+                  <a
+                    class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
+                    href="/auth/register"
+                  >
+                    Já tem uma conta? Entrar
+                  </a>
+                </div>
+                <button className="group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100">
+                  <div className="relative flex items-center space-x-4 justify-center" >
+                    <img src="https://tailus.io/sources/blocks/social/preview/images/google.svg" className="absolute left-0 w-5" alt="google logo"></img>
+                    <span className="block w-max font-semibold tracking-wide text-gray-700 text-sm transition duration-300 group-hover:text-blue-600 sm:text-base">Continue with Google</span>
+                  </div>
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 font-medium mb-2"
-              htmlFor="password"
-            >
-              Senha
-            </label>
-            <input
-              className="border border-gray-400 p-2 w-full"
-              type="password"
-              name="password"
-              value={password}
-              onChange={e => onChange(e)}
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 font-medium mb-2"
-              htmlFor="password2"
-              type="password"
-            >
-              Confirmar Senha
-            </label>
-            <input
-              className="border border-gray-400 p-2 w-full"
-              type="password"
-              name="password2"
-              value={password2}
-              onChange={e => onChange(e)}
-            />
-          </div>
-          <button className="w-full bg-indigo-500 text-white py-2 px-4 rounded-full hover:bg-indigo-600">
-            Registrar
-          </button>
-          <Link href="/auth/login" legacyBehavior>
-            <a className="block mt-4 text-center text-indigo-500 font-medium">Você já tem uma conta? Fazer login</a>
-          </Link>
-        </form>
+        </div>
       </div>
     </div>
   );
