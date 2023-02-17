@@ -6,7 +6,7 @@ import { collection, query, onSnapshot, where, getDocs } from "firebase/firestor
 import { db } from "../../lib/Firebase";
 
 const Header = () => {
-  const [user] = useAuthState(auth);
+  const [user, loading, error] = useAuthState(auth);
   const [isAdmin, setIsAdmin] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [userName, setUserName] = useState("");
@@ -65,12 +65,12 @@ const Header = () => {
                       <a href="/purchases" className="block px-4 py-2 text-sm hover:bg-gray-700">
                         <FaMoneyBillWave className="inline-block mr-2" />Transações
                       </a>
-                      <a href="/purchases" className="block px-4 py-2 text-sm hover:bg-gray-700">
+                      <a href="/users/userList" className="block px-4 py-2 text-sm hover:bg-gray-700">
                         <FaUserCog className="inline-block mr-2" />Verificar Contas
                       </a>
                     </>
                   )}
-                  <a href="/create-event" onClick={handleLogout} className="block px-4 py-2 text-sm hover:bg-gray-700">
+                  <a href="/create-event" className="block px-4 py-2 text-sm hover:bg-gray-700">
                     <FaPlusCircle className="inline-block mr-2" />Criar evento
                   </a>
                   <a href="/" onClick={handleLogout} className="block px-4 py-2 text-sm hover:bg-gray-700">

@@ -2,26 +2,10 @@ import React, { useState } from "react";
 import Link from 'next/link'
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    password2: ""
-  });
 
-  const { email, password, password2 } = formData;
 
-  const onChange = e =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  
 
-  const onSubmit = async e => {
-    e.preventDefault();
-    if (password !== password2) {
-      console.error("Passwords do not match");
-    } else {
-      console.log(formData);
-      // make API request to register user
-    }
-  };
 
   return (
     <div className="bg-gradient-to-br from-sky-50 to-gray-200 min-h-screen py-10">
@@ -69,7 +53,7 @@ const Register = () => {
                 <div className="text-center">
                   <a
                     className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
-                    href="/auth/register"
+                    href="/auth/login"
                   >
                     Já tem uma conta? Entrar
                   </a>

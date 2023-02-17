@@ -38,6 +38,10 @@ export default function CreateEvent() {
     }
   };
 
+
+
+
+
   useEffect(() => {
     async function fetchEvents() {
       const eventsCollection = collection(db, "events");
@@ -48,28 +52,22 @@ export default function CreateEvent() {
     fetchEvents();
   }, [user]);
 
-  const handleCreateEvent = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    // adiciona o evento ao Firestore usando query e addDoc
+    const q = query(collection(db, "events"));
+    const newEventRef = doc(q);
+    const newEventId = newEventRef.id;
+
+    await addDoc(q, { id: newEventId, nome, endereco, data });
     
-    // adiciona o evento ao Firestore apenas se o endereço e a cidade estiverem preenchidos
-    if (cidade && endereco && nome) {
-      const q = query(collection(db, "events"));
-      const newEventRef = doc(q);
-      const newEventId = newEventRef.id;
-      await addDoc(q, { id: newEventId, nome, endereco, data });
-      Router.push("/");
-    } else {
-      alert("Por favor, preencha o endereço e a cidade antes de criar o evento.");
-    }
+    Router.push("/");
+
   };
 
   const teste = () => {
 
     Router.push("/");
-  };
-
-  const teste2 = () => {
-    alert("event criado")
   };
 
 
@@ -119,16 +117,18 @@ export default function CreateEvent() {
                     <div className="md:col-span-5 text-right py-4">
                       <div className="inline-flex items-end">
                         <button onClick={teste} className="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded mx-3">Cancelar</button>
-                        <button onClick={handleCreateEvent} className="bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 rounded">Criar evento</button>
+                        <button type="submit" className="bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 rounded">Criar evento</button>
                       </div>
                     </div>
                   </div>
                 </div>
+                
               </div>
             </div>
           </div>
         </div>
       </div>
+      </form>
     </>
   );
 }
