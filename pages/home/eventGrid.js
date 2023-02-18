@@ -37,7 +37,7 @@ const eventGrid = ({ events }) => {
                                 <header className="flex items-center justify-between leading-tight p-2 md:p-4">
                                     <h1 className="text-base">
                                         <a className=" font-medium text-blue-400">
-                                            {event.data}
+                                            {event.dia} - {event.hora}
                                         </a>
                                     </h1>
                                 </header>
@@ -51,7 +51,7 @@ const eventGrid = ({ events }) => {
                                 <footer className="flex items-center justify-between leading-tight p-2 md:p-4">
                                     <a className="flex items-center no-underline text-gray-400 font-medium">
                                         <FaMapMarkerAlt />
-                                        <p className="ml-2 text-sm">{event.local}</p>
+                                        <p className="ml-2 text-sm">{event.cidade} - {event.endereco}</p>
                                     </a>
                                 </footer>
                             </article>

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { collection, query, addDoc, doc, getDocs } from "firebase/firestore";
 import { db } from '../lib/Firebase';
-import 'react-tabs/style/react-tabs.css';
 import Router from "next/router";
 import { auth } from "./../lib/Firebase";
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -11,9 +10,8 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 export default function CreateEvent() {
   const [user, loading, error] = useAuthState(auth);
   const [nome, setNome] = useState("");
-  const [data, setData] = useState("");
-  const [time, setTime] = useState("");
-  const [local, setLocal] = useState("");
+  const [dia, setDia] = useState("");
+  const [hora, setHora] = useState("");
   const [eventos, setEventos] = useState([]);
   const [cidade, setCidade] = useState("");
   const [endereco, setEndereco] = useState("");
@@ -56,23 +54,20 @@ export default function CreateEvent() {
       const q = query(collection(db, "events"));
       const newEventRef = doc(q);
       const newEventId = newEventRef.id;
-      await addDoc(q, { id: newEventId, nome, endereco, data });
+      await addDoc(q, { id: newEventId, nome, endereco, cidade, dia, hora });
+      alert("event criado")
       Router.push("/");
     } else {
       alert("Por favor, preencha o endereço e a cidade antes de criar o evento.");
     }
   };
 
-  const teste = () => {
+  const voltar = () => {
 
     Router.push("/");
   };
 
-  const teste2 = () => {
-    alert("event criado")
-  };
-
-
+ 
   return (
     <>
 
@@ -92,15 +87,15 @@ export default function CreateEvent() {
                   <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                     <div className="md:col-span-5">
                       <label for="nome">Nome do evento</label>
-                      <input type="text" name="nome" id="nome" value={nome} onChange={(event) => setNome(event.target.value)} className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="Nome completo" />
+                      <input type="text" name="nome" id="nome" value={nome} onChange={(event) => setNome(event.target.value)} className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="Nome do evento" />
                     </div>
                     <div className="md:col-span-2">
                       <label for="time">Hora</label>
-                      <input type="time" name="date" id="time" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="email@dominio.com" />
+                      <input type="time" name="hora" id="hora" value={hora} onChange={(event) => setHora(event.target.value)} className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"/>
                     </div>
                     <div className="md:col-span-3">
                       <label for="data">Dia</label>
-                      <input type="date" id="data" value={data} onChange={(event) => setData(event.target.value)} className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="email@dominio.com" />
+                      <input type="date" id="data" value={dia} onChange={(event) => setDia(event.target.value)} className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  />
                     </div>
                     <div className="md:col-span-3">
                       <label for="address">Endereço / Rua</label>
@@ -118,7 +113,7 @@ export default function CreateEvent() {
                     </div>
                     <div className="md:col-span-5 text-right py-4">
                       <div className="inline-flex items-end">
-                        <button onClick={teste} className="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded mx-3">Cancelar</button>
+                        <button onClick={voltar} className="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded mx-3">Cancelar</button>
                         <button onClick={handleCreateEvent} className="bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 rounded">Criar evento</button>
                       </div>
                     </div>

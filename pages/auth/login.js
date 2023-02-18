@@ -36,7 +36,7 @@ export default function LoginPage() {
                   id="email"
                 >
                 </input>
-							<div class="mb-6 text-center">
+							<div className="mb-6 text-center">
 								<button
 									class="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
 									type="button"
@@ -44,10 +44,10 @@ export default function LoginPage() {
 									Login
 								</button>
 							</div>
-                <hr class="mb-6 border-t" />
-                <div class="text-center">
+                <hr clasclassNames="mb-6 border-t" />
+                <div className="text-center">
                   <a
-                    class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
+                    className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
                     href="/auth/register"
                   >
                     Não tem uma conta? Inscreva-se
