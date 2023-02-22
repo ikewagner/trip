@@ -18,9 +18,9 @@ Aplicação/ site de compra e vendas de ingressos
 - [X] Cadastro de eventos
 - [X] Configurar login via email e senha
 - [X] Cadastro de usuários
-- [X] Verificação de usuários
+- [X] Verificação de usuários (Cadastrados no sistema (Administrador))
 - [ ] tratar erros no frontEnd
-- [ ] Verificação de Tickets
+- [ ] Verificação de Tickets (Cadastrados no sistema (Administrador))
 - [ ] Configuração e desenvolvimento ( pagamentos )
 - [ ] Desevolvimento Tela detalhes eventos + compra de ingressos
 
