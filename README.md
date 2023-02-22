@@ -16,11 +16,21 @@ Aplicação/ site de compra e vendas de ingressos
 - [X] Tela de cadastro
 - [X] Home
 - [X] Cadastro de eventos
-- [ ] Cadastro de usuários
+- [X] Configurar login via email e senha
+- [X] Cadastro de usuários
 - [X] Verificação de usuários
+- [ ] tratar erros no frontEnd
 - [ ] Verificação de Tickets
 - [ ] Configuração e desenvolvimento ( pagamentos )
-- [ ] Desevolvimento detalhes eventos + compra de ingressos
+- [ ] Desevolvimento Tela detalhes eventos + compra de ingressos
+
+## Tecnologias
+
+* Next.js + Tailwind CSS
+* Firebase
+* API - bigdatacloud
+* Vercel
+
 
 ##  Autores
 
@@ -29,3 +39,7 @@ Aplicação/ site de compra e vendas de ingressos
     <td align="center"><a href="https://github.com/ikewagner"><img src="https://avatars.githubusercontent.com/u/25329337?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Henrique Wagner</b></sub></a></td>
   </tr>
 </table>
+
+## 
+
+Criado com muito ❤️

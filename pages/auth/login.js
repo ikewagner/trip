@@ -1,17 +1,31 @@
 import { auth } from "./../../lib/Firebase";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import React from "react";
+import React, { useState } from "react";
 import Router from "next/router";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 export default function LoginPage() {
   const [user, loading, error] = useAuthState(auth);
-  const GoogleAuth = new GoogleAuthProvider()
+  const GoogleAuth = new GoogleAuthProvider();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const loginGoogle = async () => {
     const result = await signInWithPopup(auth, GoogleAuth);
     Router.push("/");
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      Router.push('/');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -28,23 +42,27 @@ export default function LoginPage() {
                   type="email"
                   id="email"
                   placeholder="E-mail"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 >
                 </input>
                 <input className="group h-12 px-6 border-2 border-gray-300 rounded-full"
                   type="password"
                   placeholder="Senha"
-                  id="email"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 >
                 </input>
 							<div className="mb-6 text-center">
 								<button
-									class="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-									type="button"
+									className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+									type="button" onClick={handleLogin}
 								>
 									Login
 								</button>
 							</div>
-                <hr clasclassNames="mb-6 border-t" />
+                <hr className="mb-6 border-t" />
                 <div className="text-center">
                   <a
                     className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"

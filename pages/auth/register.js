@@ -1,11 +1,46 @@
 import React, { useState } from "react";
-import Link from 'next/link'
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./../../lib/Firebase";
+import { getFirestore, collection, addDoc} from "firebase/firestore";
+
+import Router from "next/router";
 
 const Register = () => {
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [nome, setNome] = useState("");
 
-  
+  const handleCreateAccount = async (e) => {
+    e.preventDefault();
 
+    if (!email) {
+      console.error("Email is empty");
+      return;
+    }
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      console.log("Usuário cadastrado com sucesso:", user);
+
+      const db = getFirestore();
+      const isBlocked = false;
+      const isAdmin = false;
+      const usersCollection = collection(db, "users");
+      await addDoc(usersCollection, {
+        nome,
+        email,
+        isBlocked,
+        isAdmin,
+        userId: user.uid,
+      });
+
+      Router.push("/");
+    } catch (error) {
+      console.error("Erro ao cadastrar o usuário:", error);
+    }
+  };
 
   return (
     <div className="bg-gradient-to-br from-sky-50 to-gray-200 min-h-screen py-10">
@@ -20,31 +55,31 @@ const Register = () => {
               <input className="group h-12 px-6 border-2 border-gray-300 rounded-full"
                   type="text"
                   id="nome"
-                  placeholder="Digite seu nome completo"
+                  placeholder="Digite seu Nome Completo"
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
                 >
                 </input>
                 <input className="group h-12 px-6 border-2 border-gray-300 rounded-full"
                   type="email"
                   id="email"
-                  placeholder="E-mail"
+                  placeholder="Digite seu email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 >
                 </input>
                 <input className="group h-12 px-6 border-2 border-gray-300 rounded-full"
                   type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="Digite sua senha"
-                  id="senha"
-                >
-                </input>
-                <input className="group h-12 px-6 border-2 border-gray-300 rounded-full"
-                  type="password"
-                  placeholder="Digite novamente sua senha"
-                  id="senha"
                 >
                 </input>
                 <div className="mb-6 text-center">
                   <button
                     className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-                    type="button"
+                    type="button" onClick={handleCreateAccount}
                   >
                     Registrar
                   </button>
