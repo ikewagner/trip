@@ -3,6 +3,7 @@ import { db } from "../../lib/Firebase";
 import 'firebase/firestore';
 import { collection, query, onSnapshot } from "firebase/firestore";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import EventGrid from "./eventGrid";
 
 const eventList = () => {
@@ -31,6 +32,7 @@ const eventList = () => {
         <>
             <Header />
             <EventGrid events={events} />
+           
         </>
     );
 };

@@ -30,8 +30,8 @@ const eventGrid = ({ events }) => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {filteredEvents.map((event) => (
                         <div className="my-4 px-1 w-full " key={event.id} >
-                            <article className="overflow-hidden rounded-lg shadow-lg">
-                                <a href={`/event/${event.id}`}>
+                            <article className="overflow-hidden rounded-lg shadow-lg ">
+                                <a href={`/events/${event.id}`}>
                                     <img alt="Placeholder" className="block h-auto w-full" src="https://picsum.photos/600/400/?random" />
                                 </a>
                                 <header className="flex items-center justify-between leading-tight p-2 md:p-4">
@@ -41,13 +41,13 @@ const eventGrid = ({ events }) => {
                                         </a>
                                     </h1>
                                 </header>
-                                <boby className="flex items-center justify-between leading-tight p-2 md:p-4">
+                                <div className="flex items-center justify-between leading-tight p-2 md:p-4">
                                     <h1 className="text-lg">
-                                        <a className=" font-bold no-underline hover:underlinetext-grey-darker text-lg" href={`/event/${event.id}`}>
+                                        <a className=" font-bold no-underline hover:underlinetext-grey-darker text-lg" href={`/events/${event.id}`}>
                                             {event.nome}
                                         </a>
                                     </h1>
-                                </boby>
+                                </div>
                                 <footer className="flex items-center justify-between leading-tight p-2 md:p-4">
                                     <a className="flex items-center no-underline text-gray-400 font-medium">
                                         <FaMapMarkerAlt />
