@@ -1,27 +1,31 @@
-# Next.js + Tailwind CSS Example
+#  Trip
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.2)](https://tailwindcss.com/blog/tailwindcss-v3-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+Aplicação/ site de compra e vendas de ingressos
 
-## Deploy your own
+##  Descrição do ambiente
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+| Item | Valor |
+|-|-|
+| Linguagem | JavaScript |
+| API usada | bigdatacloud |
+| IDE | Visual Studio Code |
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+##  Desenvolvimento
 
-## How to use
+- [X] Tela de login
+- [X] Tela de cadastro
+- [X] Home
+- [X] Cadastro de eventos
+- [ ] Cadastro de usuários
+- [X] Verificação de usuários
+- [ ] Verificação de Tickets
+- [ ] Configuração e desenvolvimento ( pagamentos )
+- [ ] Desevolvimento detalhes eventos + compra de ingressos
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+##  Autores
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/ikewagner"><img src="https://avatars.githubusercontent.com/u/25329337?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Henrique Wagner</b></sub></a></td>
+  </tr>
+</table>
