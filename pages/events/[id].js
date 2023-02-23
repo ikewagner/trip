@@ -7,11 +7,12 @@ import { collection, query, onSnapshot, where } from "firebase/firestore";
 import { db } from "../../lib/Firebase";
 import Head from 'next/head';
 import Image from 'next/image';
+import Header from "../components/Header";
 
 const EventDetail = () => {
 
   const [numTickets, setNumTickets] = useState({ comum: 1, vip: 0, camarote: 0 });
-  
+
   const tickets = [
     { type: 'comum', price: 50 },
     { type: 'vip', price: 100 },
@@ -66,15 +67,16 @@ const EventDetail = () => {
 
   return (
     <>
+    <Header/>
       <Head>
         <title>{nome} - Detalhes do Evento</title>
         <meta name="description" content={`Detalhes do evento: ${descricao}`} />
       </Head>
-      <div className="container mx-auto py-8">
+      <div className="container mx-auto py-8 mt-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="mb-4 md:mb-0">
-            <Image
-
+            <img
+              src="https://picsum.photos/600/400/?random"
               width={600}
               height={400}
               layout="responsive"
@@ -103,6 +105,7 @@ const EventDetail = () => {
                         type="number"
                         min="1"
                         step="1"
+                        max={99}
                         value={numTickets[ticket.type]}
                         onChange={(event) => handleNumTicketsChange(event, ticket.type)}
                         className="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-20 px-2 py-1"
@@ -132,6 +135,13 @@ const EventDetail = () => {
                 <FaTicketAlt className="inline-block mr-2" />
                 Comprar
               </button>
+            </div>
+            <div className="mt-6 text-right">
+              <a
+                className="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded" href="/"
+              >
+                Voltar
+              </a>
             </div>
           </div>
         </div>
