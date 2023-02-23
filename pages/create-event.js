@@ -15,6 +15,7 @@ export default function CreateEvent() {
   const [eventos, setEventos] = useState([]);
   const [cidade, setCidade] = useState("");
   const [endereco, setEndereco] = useState("");
+  const [descricao, setDescricao] = useState("");
 
   const handleUseLocation = () => {
     if (navigator.geolocation) {
@@ -54,7 +55,7 @@ export default function CreateEvent() {
       const q = query(collection(db, "events"));
       const newEventRef = doc(q);
       const newEventId = newEventRef.id;
-      await addDoc(q, { id: newEventId, nome, endereco, cidade, dia, hora });
+      await addDoc(q, { id: newEventId, nome, endereco, cidade, dia, hora, descricao });
       alert("event criado")
       Router.push("/");
     } else {
@@ -104,6 +105,10 @@ export default function CreateEvent() {
                     <div className="md:col-span-2">
                       <label for="city">Cidade</label>
                       <input type="text" id="cidade" name="cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="Cidade" />
+                    </div>
+                    <div className="md:col-span-5">
+                      <label for="descricao">Descrição</label>
+                      <input type="text" name="descricao" id="descricao" value={descricao} onChange={(event) => setDescricao(event.target.value)} className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="Digite uma descrição do evento" />
                     </div>
                     <div className="md:col-span-3">
                       <button className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded flex items-center" onClick={handleUseLocation}>
