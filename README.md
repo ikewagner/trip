@@ -14,6 +14,7 @@ Aplicação/ site de compra e vendas de ingressos
 
 - [X] Tela de login
 - [X] Tela de cadastro
+- [X] Tela Detalhes Eventos
 - [X] Home
 - [X] Cadastro de eventos
 - [X] Configurar login via email e senha
